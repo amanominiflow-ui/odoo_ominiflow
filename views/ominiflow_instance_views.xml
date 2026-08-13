@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ominiflow_instance_list" model="ir.ui.view">
+        <field name="name">ominiflow.instance.list</field>
+        <field name="model">ominiflow.instance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="api_base_url"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="connection_status" widget="badge"
+                       decoration-success="connection_status == 'connected'"
+                       decoration-danger="connection_status == 'error'"
+                       decoration-muted="connection_status == 'unknown'"/>
+                <field name="last_sync"/>
+                <field name="sync_success_count"/>
+                <field name="sync_failed_count"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ominiflow_instance_form" model="ir.ui.view">
+        <field name="name">ominiflow.instance.form</field>
+        <field name="model">ominiflow.instance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_test_connection" type="object" string="Test Connection" class="btn-primary" groups="ominiflow_odoo.group_ominiflow_manager"/>
+                    <button name="action_sync_products" type="object" string="Sync Products" invisible="not sync_products" groups="ominiflow_odoo.group_ominiflow_manager"/>
+                    <button name="action_sync_customers" type="object" string="Sync Customers" invisible="not sync_customers" groups="ominiflow_odoo.group_ominiflow_manager"/>
+                    <button name="action_sync_all" type="object" string="Sync All" invisible="not sync_products and not sync_customers" groups="ominiflow_odoo.group_ominiflow_manager"/>
+                    <button name="action_open_logs" type="object" string="View Logs"/>
+                    <field name="connection_status" widget="statusbar" statusbar_visible="unknown,connected,error"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_logs" type="object" class="oe_stat_button" icon="fa-list">
+                            <field name="sync_success_count" widget="statinfo" string="Successful"/>
+                        </button>
+                        <button name="action_open_logs" type="object" class="oe_stat_button" icon="fa-exclamation-triangle">
+                            <field name="sync_failed_count" widget="statinfo" string="Failed"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Production"/></h1>
+                    </div>
+                    <group>
+                        <group string="Connection">
+                            <field name="active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="api_base_url" placeholder="https://whatsapp.ominiflow.com"/>
+                            <field name="api_key" password="True"/>
+                            <field name="webhook_secret" password="True"/>
+                            <field name="company_external_id"/>
+                        </group>
+                        <group string="Status">
+                            <field name="last_connection_test"/>
+                            <field name="last_sync"/>
+                            <field name="last_error"/>
+                            <field name="binding_count"/>
+                        </group>
+                    </group>
+                    <group string="Synchronization">
+                        <group>
+                            <field name="sync_products"/>
+                            <field name="sync_customers"/>
+                        </group>
+                        <group>
+                            <field name="sync_orders"/>
+                            <field name="sync_inventory"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ominiflow_instance_kanban" model="ir.ui.view">
+        <field name="name">ominiflow.instance.kanban</field>
+        <field name="model">ominiflow.instance</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard">
+                <field name="name"/>
+                <field name="connection_status"/>
+                <field name="last_sync"/>
+                <field name="sync_success_count"/>
+                <field name="sync_failed_count"/>
+                <field name="active"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div>
+                                <field name="connection_status" widget="badge"
+                                       decoration-success="connection_status == 'connected'"
+                                       decoration-danger="connection_status == 'error'"
+                                       decoration-muted="connection_status == 'unknown'"/>
+                            </div>
+                            <div>Last sync: <field name="last_sync"/></div>
+                            <div>Successful: <field name="sync_success_count"/> · Failed: <field name="sync_failed_count"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_ominiflow_instance_search" model="ir.ui.view">
+        <field name="name">ominiflow.instance.search</field>
+        <field name="model">ominiflow.instance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="api_base_url"/>
+                <filter name="filter_connected" string="Connected" domain="[('connection_status', '=', 'connected')]"/>
+                <filter name="filter_error" string="Error" domain="[('connection_status', '=', 'error')]"/>
+                <filter name="filter_active" string="Active" domain="[('active', '=', True)]"/>
+                <group>
+                    <filter name="group_status" string="Status" context="{'group_by': 'connection_status'}"/>
+                    <filter name="group_company" string="Company" context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ominiflow_instance" model="ir.actions.act_window">
+        <field name="name">Connections</field>
+        <field name="res_model">ominiflow.instance</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="view_ominiflow_instance_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create an OminiFlow connection</p>
+            <p>Enter your OminiFlow URL and Developer Portal API key (OMINI_…), then click Test Connection.</p>
+        </field>
+    </record>
+</odoo>

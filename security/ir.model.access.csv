@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ominiflow_instance_user,ominiflow.instance.user,model_ominiflow_instance,group_ominiflow_user,1,0,0,0
+access_ominiflow_instance_manager,ominiflow.instance.manager,model_ominiflow_instance,group_ominiflow_manager,1,1,1,1
+access_ominiflow_log_user,ominiflow.sync.log.user,model_ominiflow_sync_log,group_ominiflow_user,1,0,0,0
+access_ominiflow_log_manager,ominiflow.sync.log.manager,model_ominiflow_sync_log,group_ominiflow_manager,1,1,1,1
+access_ominiflow_binding_user,ominiflow.binding.user,model_ominiflow_binding,group_ominiflow_user,1,0,0,0
+access_ominiflow_binding_manager,ominiflow.binding.manager,model_ominiflow_binding,group_ominiflow_manager,1,1,1,1
+access_ominiflow_help_user,ominiflow.help.user,model_ominiflow_help,group_ominiflow_user,1,0,1,0
+access_ominiflow_wizard_user,ominiflow.sync.wizard.user,model_ominiflow_sync_wizard,group_ominiflow_user,1,1,1,0
+access_ominiflow_product_manager,product.template.ominiflow.manager,product.model_product_template,group_ominiflow_manager,1,1,1,0
+access_ominiflow_partner_manager,res.partner.ominiflow.manager,base.model_res_partner,group_ominiflow_manager,1,1,1,0

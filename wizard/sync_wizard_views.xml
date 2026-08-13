@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ominiflow_sync_wizard_form" model="ir.ui.view">
+        <field name="name">ominiflow.sync.wizard.form</field>
+        <field name="model">ominiflow.sync.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Synchronize OminiFlow">
+                <group>
+                    <field name="instance_id"/>
+                    <field name="resource_type"/>
+                    <field name="direction"/>
+                </group>
+                <footer>
+                    <button name="action_run" type="object" string="Synchronize" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ominiflow_sync_wizard" model="ir.actions.act_window">
+        <field name="name">Manual Sync</field>
+        <field name="res_model">ominiflow.sync.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_ominiflow_sync_wizard_form"/>
+    </record>
+</odoo>

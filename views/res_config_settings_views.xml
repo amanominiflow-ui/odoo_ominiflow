@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_ominiflow" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.ominiflow</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="OminiFlow" string="OminiFlow" name="ominiflow_odoo" groups="ominiflow_odoo.group_ominiflow_manager">
+                    <block title="Scheduled synchronization" name="ominiflow_sync_block">
+                        <setting id="ominiflow_auto_sync_setting"
+                                 string="Automatic sync"
+                                 help="Hourly product and customer crons run only when this is enabled and the connection flags are on.">
+                            <field name="ominiflow_auto_sync"/>
+                        </setting>
+                    </block>
+                    <block title="Connections" name="ominiflow_connections_block">
+                        <setting id="ominiflow_connections_setting" string="OminiFlow connections">
+                            <button name="%(action_ominiflow_instance)d" type="action" string="Manage connections" class="btn-link"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_ominiflow_config_settings" model="ir.actions.act_window">
+        <field name="name">Configuration</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.res_config_settings_view_form"/>
+        <field name="context">{'module': 'ominiflow_odoo'}</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

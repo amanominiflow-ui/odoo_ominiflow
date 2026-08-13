@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ominiflow_root"
+              name="OminiFlow"
+              web_icon="ominiflow_odoo,static/description/icon.png"
+              sequence="25"/>
+
+    <menuitem id="menu_ominiflow_dashboard"
+              name="Dashboard"
+              parent="menu_ominiflow_root"
+              action="action_ominiflow_dashboard"
+              sequence="1"/>
+
+    <menuitem id="menu_ominiflow_instance"
+              name="Connections"
+              parent="menu_ominiflow_root"
+              action="action_ominiflow_instance"
+              sequence="10"/>
+
+    <menuitem id="menu_ominiflow_products"
+              name="Products"
+              parent="menu_ominiflow_root"
+              action="action_ominiflow_products"
+              sequence="20"/>
+
+    <menuitem id="menu_ominiflow_orders"
+              name="Orders"
+              parent="menu_ominiflow_root"
+              action="action_ominiflow_help_orders"
+              sequence="30"/>
+
+    <menuitem id="menu_ominiflow_customers"
+              name="Customers"
+              parent="menu_ominiflow_root"
+              action="action_ominiflow_customers"
+              sequence="40"/>
+
+    <menuitem id="menu_ominiflow_inventory"
+              name="Inventory"
+              parent="menu_ominiflow_root"
+              action="action_ominiflow_help_inventory"
+              sequence="50"/>
+
+    <menuitem id="menu_ominiflow_logs"
+              name="Sync Logs"
+              parent="menu_ominiflow_root"
+              action="action_ominiflow_sync_log"
+              sequence="60"/>
+
+    <menuitem id="menu_ominiflow_config"
+              name="Configuration"
+              parent="menu_ominiflow_root"
+              sequence="90"
+              groups="ominiflow_odoo.group_ominiflow_manager"/>
+
+    <menuitem id="menu_ominiflow_config_settings"
+              name="Settings"
+              parent="menu_ominiflow_config"
+              action="action_ominiflow_config_settings"
+              sequence="10"
+              groups="ominiflow_odoo.group_ominiflow_manager"/>
+
+    <menuitem id="menu_ominiflow_config_connections"
+              name="Connections"
+              parent="menu_ominiflow_config"
+              action="action_ominiflow_instance"
+              sequence="20"
+              groups="ominiflow_odoo.group_ominiflow_manager"/>
+
+    <menuitem id="menu_ominiflow_config_sync"
+              name="Manual Sync"
+              parent="menu_ominiflow_config"
+              action="action_ominiflow_sync_wizard"
+              sequence="30"
+              groups="ominiflow_odoo.group_ominiflow_manager"/>
+</odoo>

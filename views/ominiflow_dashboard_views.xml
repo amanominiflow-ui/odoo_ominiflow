@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ominiflow_help_form" model="ir.ui.view">
+        <field name="name">ominiflow.help.form</field>
+        <field name="model">ominiflow.help</field>
+        <field name="arch" type="xml">
+            <form string="OminiFlow">
+                <sheet>
+                    <h1><field name="title"/></h1>
+                    <field name="message"/>
+                </sheet>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ominiflow_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">ominiflow.instance</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="view_id" ref="view_ominiflow_instance_kanban"/>
+        <field name="search_view_id" ref="view_ominiflow_instance_search"/>
+        <field name="context">{'search_default_filter_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No OminiFlow connections yet</p>
+            <p>Create a connection to see status, last sync, and success or failure counts.</p>
+        </field>
+    </record>
+
+    <record id="action_ominiflow_help_orders" model="ir.actions.act_window">
+        <field name="name">Orders</field>
+        <field name="res_model">ominiflow.help</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_ominiflow_help_form"/>
+        <field name="context">{'ominiflow_help_topic': 'orders'}</field>
+    </record>
+
+    <record id="action_ominiflow_help_inventory" model="ir.actions.act_window">
+        <field name="name">Inventory</field>
+        <field name="res_model">ominiflow.help</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_ominiflow_help_form"/>
+        <field name="context">{'ominiflow_help_topic': 'inventory'}</field>
+    </record>
+</odoo>

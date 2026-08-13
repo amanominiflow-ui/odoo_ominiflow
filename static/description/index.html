@@ -1,0 +1,120 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">OminiFlow for Odoo 19</h2>
+        <h3 class="oe_slogan">Connect Odoo with your existing OminiFlow PHP platform</h3>
+        <div class="oe_span12" style="text-align:center;">
+            <img src="banner.jpg" alt="OminiFlow" style="max-width:100%;"/>
+        </div>
+        <p>
+            OminiFlow is a WhatsApp commerce and messaging platform. This module is an
+            Odoo 19 connector only. It talks to the existing PHP backend over HTTPS.
+            It does not replace OminiFlow and does not access the OminiFlow database directly.
+        </p>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Features</h2>
+        <div class="oe_span6">
+            <ul>
+                <li>Secure connection with a Developer Portal API key</li>
+                <li>Test Connection against the real /api/wpbox/me endpoint</li>
+                <li>Product catalog synchronization (SKU + OminiFlow id)</li>
+                <li>Customer synchronization from WhatsApp contacts (phone + id)</li>
+                <li>Sync logs with success and failure filters</li>
+                <li>Hourly scheduled sync</li>
+                <li>HMAC-verified inbound webhooks</li>
+            </ul>
+        </div>
+        <div class="oe_span6">
+            <img src="icon.png" alt="OminiFlow icon" style="max-width:160px;"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Supported integrations</h2>
+        <p>
+            This connector uses the public OminiFlow REST APIs used by the Developer Portal
+            and catalog tools:
+        </p>
+        <ul>
+            <li>GET /api/wpbox/me</li>
+            <li>GET/POST/PUT /api/wpbox/ecommerce/products</li>
+            <li>GET /api/wpbox/getContacts</li>
+            <li>POST /api/wpbox/makeContact</li>
+            <li>Developer Portal webhooks (X-Ominiflow-Signature)</li>
+        </ul>
+        <p>
+            Sales order sync and warehouse inventory moves are <strong>not</strong> included,
+            because OminiFlow does not currently publish those REST APIs.
+        </p>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Setup</h2>
+        <ol>
+            <li>Install the module in Odoo 19.</li>
+            <li>Create an OMINI_ API key in the OminiFlow Developer Portal.</li>
+            <li>Open OminiFlow → Connections and enter the base URL and API key.</li>
+            <li>Click Test Connection.</li>
+            <li>Enable product and/or customer sync, then run Sync or wait for the hourly cron.</li>
+        </ol>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Synchronization</h2>
+        <p>
+            Products are matched by OminiFlow id, then by SKU. Contacts are matched by
+            OminiFlow id, then by phone, then by email. The same sync can be run twice
+            without creating duplicate Odoo records.
+        </p>
+        <p>
+            Catalog stock_quantity is stored as a product field for reference. Odoo
+            warehouse quantities are not changed.
+        </p>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Requirements</h2>
+        <ul>
+            <li>Odoo 19.0</li>
+            <li>OminiFlow PHP application with Developer Portal API keys</li>
+            <li>Network access from the Odoo server to the OminiFlow URL</li>
+        </ul>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Screenshots</h2>
+        <p>
+            Capture screenshots from your Odoo 19 database after install
+            (Dashboard, Connections form, Sync Logs) and place them here as
+            screenshot_1.png, screenshot_2.png, and screenshot_3.png before
+            Odoo Apps Store submission.
+        </p>
+        <div class="oe_span12" style="text-align:center;">
+            <img src="ominiflow_favicon.png" alt="OminiFlow mark"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Support</h2>
+        <p>
+            Author: CodecrispTech<br/>
+            Website: <a href="https://www.ominiflow.com">https://www.ominiflow.com</a><br/>
+            License: LGPL-3
+        </p>
+    </div>
+</section>
