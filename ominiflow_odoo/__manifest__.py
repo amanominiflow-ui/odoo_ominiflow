@@ -38,8 +38,8 @@ Not included (OminiFlow has no public REST API yet):
     ],
     'images': [
         'static/description/banner.jpg',
-        'static/description/connection_screenshot.png',
-        'static/description/synclogs_screenshot.png',
+        'static/description/connection.png',
+        'static/description/synclogs.png',
         'static/description/icon.png',
     ],
     'application': True,
