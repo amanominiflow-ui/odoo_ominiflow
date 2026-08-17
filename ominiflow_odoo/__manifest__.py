@@ -19,7 +19,7 @@ Not included (OminiFlow has no public REST API yet):
 - Sales order synchronization
 - Warehouse inventory moves
     """,
-    'author': 'CodecrispTech',
+    'author': 'OminiFlow',
     'website': 'https://www.ominiflow.com',
     'license': 'LGPL-3',
     'depends': ['base', 'product'],
