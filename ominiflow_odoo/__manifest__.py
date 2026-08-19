@@ -37,10 +37,9 @@ Not included (OminiFlow has no public REST API yet):
         'data/ir_cron.xml',
     ],
     'images': [
-        'static/description/banner.jpg',
+        'static/description/icon.png',
         'static/description/connection.png',
         'static/description/synclogs.png',
-        'static/description/icon.png',
     ],
     'application': True,
     'installable': True,
